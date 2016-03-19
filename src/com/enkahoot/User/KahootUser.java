@@ -10,10 +10,10 @@ public class KahootUser {
     private String userName;
     private KahootSession session;
 
-    public KahootUser(String userName)
+    public KahootUser(String userName, UserType type)
     {
         this.userName = userName;
-        session = new KahootSession(this, Main.gameID);
+        session = new KahootSession(this, type, Main.gameID);
     }
 
     public String getUserName()
