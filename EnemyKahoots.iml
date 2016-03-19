@@ -8,6 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Selenium" level="project" />
-    <orderEntry type="library" name="htmlunit" level="project" />
+    <orderEntry type="library" name="Selenium-deps" level="project" />
   </component>
 </module>
