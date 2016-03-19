@@ -6,6 +6,8 @@ import com.enkahoot.User.UserType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriverService;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import javax.swing.text.html.HTML;
 import java.io.File;
@@ -28,12 +30,18 @@ public class KahootSession implements Runnable{
         this.user = user;
         //headlessSession.setJavascriptEnabled(true);
         this.gameID = gameID;
-        new Thread(this).start();
+        Thread me = new Thread(this);
+        Main.threads.submit(me);
     }
 
     @Override
     public void run() {
-        headlessSession = new PhantomJSDriver();
+        DesiredCapabilities defs = DesiredCapabilities.phantomjs();
+        if(System.getProperty("os.name").contains("Windows"))
+            defs.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "phantomjs.exe");
+        else
+            defs.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "phantomjs");
+        headlessSession = new PhantomJSDriver(defs);
         headlessSession.get("http://kahoot.it");
         enterGame();
         waitForStart();
@@ -86,13 +94,10 @@ public class KahootSession implements Runnable{
                     case MIMIC:
                         choice = Main.mimicMaster.getAnswer();
                         selected = elements.size() > 0 ? elements.get(choice) : null;
-                        if (selected != null && selected.isDisplayed() && selected.isEnabled())
+                        if (selected != null && selected.isDisplayed() && selected.isEnabled()) {
                             selected.click();
-                        answered = true;
-                        break;
-                    case SMART:
-
-                        answered = true;
+                            answered = true;
+                        }
                         break;
                 }
             } catch(Exception e)
