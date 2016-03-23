@@ -29,7 +29,7 @@ public class KahootSession implements Runnable{
         //headlessSession.setJavascriptEnabled(true);
         this.gameID = gameID;
         Thread me = new Thread(this);
-        Main.threads.submit(me);
+        me.start();
     }
 
     public void run() {
@@ -38,6 +38,8 @@ public class KahootSession implements Runnable{
             defs.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "phantomjs.exe");
         else
             defs.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "phantomjs");
+        Main.drivers.add(headlessSession);
+
         headlessSession = new PhantomJSDriver(defs);
         headlessSession.get("http://kahoot.it");
         enterGame();
@@ -101,6 +103,5 @@ public class KahootSession implements Runnable{
             {
             }
         }
-        System.out.println("Cast into the oblivion.");
     }
 }

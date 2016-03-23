@@ -11,6 +11,9 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 /**
  * Created by Ivan on 3/17/2016.
  * The main class to determine the main user's answers to copy
@@ -42,7 +45,6 @@ public class UserActionListener implements Runnable{
     public int getAnswer()
     {
         while(true) {
-            System.out.println(answerData);
             if (answerData.length() > 0 && !answerData.contains("undefined") && !answerData.contains("correct")) {
                 if (answerData.contains("A")) {
                     return 0;
@@ -81,12 +83,11 @@ public class UserActionListener implements Runnable{
             case SAFARI:
                 userSession = new SafariDriver();
         }
+        Main.drivers.add(userSession);
+
         userSession.get("http://kahoot.it");
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-        }
-        WebElement pinbox = userSession.findElement(By.id("inputSession"));
+        WebDriverWait waiter = new WebDriverWait(userSession, 10);
+        WebElement pinbox = waiter.until(ExpectedConditions.visibilityOfElementLocated(By.id("inputSession")));
         pinbox.sendKeys(Main.gameID + "\n");
         while(true)
             answerFetch();

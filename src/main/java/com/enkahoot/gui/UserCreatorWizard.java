@@ -3,6 +3,7 @@ package com.enkahoot.gui;
 import com.enkahoot.Main;
 import com.enkahoot.User.KahootUser;
 import com.enkahoot.User.UserType;
+import org.openqa.selenium.WebDriver;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -44,7 +45,6 @@ public class UserCreatorWizard {
 
     private class LockListener implements ActionListener
     {
-        @Override
         public void actionPerformed(ActionEvent e) {
             txtGID.setEditable(!lockGIDCheckBox.isSelected());
         }
@@ -52,7 +52,6 @@ public class UserCreatorWizard {
 
     private class AddButtonListener implements ActionListener
     {
-        @Override
         public void actionPerformed(ActionEvent e) {
             if (!txtName.getText().equals("") || !txtGID.getText().equals("")) {
 
@@ -75,39 +74,34 @@ public class UserCreatorWizard {
     }
     private class CloseActionListener implements WindowListener
     {
-        @Override
         public void windowOpened(WindowEvent e) {
 
         }
 
-        @Override
         public void windowClosing(WindowEvent e) {
-            System.out.println("CLOSING!!!");
-            Main.threads.shutdownNow();
-            System.out.println(Thread.activeCount());
+            for(WebDriver driver : Main.drivers)
+                driver.quit();
+            System.exit(0);
         }
 
-        @Override
         public void windowClosed(WindowEvent e) {
-            Main.threads.shutdown();
+            for(WebDriver driver : Main.drivers)
+                driver.quit();
+            System.exit(0);
         }
 
-        @Override
         public void windowIconified(WindowEvent e) {
 
         }
 
-        @Override
         public void windowDeiconified(WindowEvent e) {
 
         }
 
-        @Override
         public void windowActivated(WindowEvent e) {
 
         }
 
-        @Override
         public void windowDeactivated(WindowEvent e) {
 
         }

@@ -17,9 +17,9 @@
             <version>2.53.0</version>
         </dependency>
         <dependency>
-            <groupId>com.github.detro</groupId>
+            <groupId>com.codeborne</groupId>
             <artifactId>phantomjsdriver</artifactId>
-            <version>1.2.0</version>
+            <version>1.2.1</version>
         </dependency>
 
         <dependency>
@@ -27,6 +27,7 @@
             <artifactId>selenium-remote-driver</artifactId>
             <version>2.53.0</version>
         </dependency>
+
         <!-- Needed to compile intellij form stuff -->
         <dependency>
             <groupId>com.intellij</groupId>

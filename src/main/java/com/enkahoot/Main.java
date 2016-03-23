@@ -3,9 +3,12 @@ package com.enkahoot;
 import com.enkahoot.gui.UserCreatorWizard;
 import com.enkahoot.web.BrowserType;
 import com.enkahoot.web.UserActionListener;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -13,7 +16,8 @@ public class Main {
 
     public static String gameID = "10000";
     public static UserActionListener mimicMaster;
-    public static ExecutorService threads = Executors.newCachedThreadPool();
+    public static ArrayList<WebDriver> drivers = new ArrayList<WebDriver>();
+
     public static void main(String[] args) throws IOException {
         //cross platform magic right here...
         /*
