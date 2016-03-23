@@ -30,6 +30,7 @@ public class UserCreatorWizard {
     {
         display.setContentPane(panel);
         display.addWindowListener(new CloseActionListener());
+        display.getRootPane().setDefaultButton(addButton);
         lockGIDCheckBox.addActionListener(new LockListener());
         addButton.addActionListener(new AddButtonListener());
         txtGID.setText(Main.gameID);
