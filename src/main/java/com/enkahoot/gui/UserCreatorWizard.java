@@ -3,8 +3,6 @@ package com.enkahoot.gui;
 import com.enkahoot.Main;
 import com.enkahoot.User.KahootUser;
 import com.enkahoot.User.UserType;
-import com.enkahoot.web.KahootSession;
-import sun.awt.WindowClosingListener;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

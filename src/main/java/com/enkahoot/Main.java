@@ -1,10 +1,8 @@
 package com.enkahoot;
-import com.enkahoot.User.KahootUser;
+
 import com.enkahoot.gui.UserCreatorWizard;
 import com.enkahoot.web.BrowserType;
-import com.enkahoot.web.KahootSession;
 import com.enkahoot.web.UserActionListener;
-import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 
 import javax.swing.*;
 import java.io.IOException;

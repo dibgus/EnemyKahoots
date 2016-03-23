@@ -9,8 +9,6 @@ import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import javax.swing.text.html.HTML;
-import java.io.File;
 import java.util.List;
 
 /**
@@ -34,7 +32,6 @@ public class KahootSession implements Runnable{
         Main.threads.submit(me);
     }
 
-    @Override
     public void run() {
         DesiredCapabilities defs = DesiredCapabilities.phantomjs();
         if(System.getProperty("os.name").contains("Windows"))

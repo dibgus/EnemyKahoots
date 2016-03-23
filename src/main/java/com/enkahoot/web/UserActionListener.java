@@ -11,9 +11,6 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
-
-import java.nio.file.Paths;
-
 /**
  * Created by Ivan on 3/17/2016.
  * The main class to determine the main user's answers to copy
@@ -26,8 +23,7 @@ public class UserActionListener implements Runnable{
     {
         this.browser = browser;
         Thread userThread = new Thread(this);
-        Main.threads.submit(userThread);
-        //userThread.start();
+        userThread.start();
     }
     //<div class="message  answerA" ng-class="messageClass()">
     public void answerFetch()
@@ -64,7 +60,6 @@ public class UserActionListener implements Runnable{
         }
     }
 
-    @Override
     public void run() {
         switch(browser)
         {
